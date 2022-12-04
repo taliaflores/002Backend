@@ -74,8 +74,8 @@ products(app, upload);
 */
 ordersDeliverySocket(io);
 ///-----Ip donde dara servicio del backend
-ips='192.168.0.12'
-server.listen(3000, ips || 'localhost', function() {
+
+server.listen(3000, '192.168.0.12' || 'localhost', function() {
     console.log('Aplicacion de NodeJS IP: '+ips+' EL puerto' + port + ' Iniciada...')
 });
 
