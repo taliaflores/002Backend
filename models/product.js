@@ -3,6 +3,41 @@ const db = require('../config/config');
 const Product = {};
 
 
+Product.productAll= () => {
+    const sql = `
+    SELECT
+        P.id,
+        P.name,
+        P.description,
+        P.price,
+        P.image1,
+        P.image2,
+        P.image3,
+        P.id_category
+    FROM
+        products AS P
+    
+    `;
+
+    return db.manyOrNone(sql);
+}
+
+Product.ProductSuCategory = (id_producto) => {
+    const sql = `
+    SELECT
+    C.name,
+    P.id_category
+
+FROM
+    products AS P, categories AS C
+WHERE
+    P.id = $1 
+    AND 
+    C.id = P.id_category
+    `;
+
+    return db.manyOrNone(sql, id_producto);
+}
 Product.findByCategory = (id_category) => {
     const sql = `
     SELECT
@@ -86,5 +121,19 @@ Product.update = (product) => {
     ]);
 }
 
+Product.deleteproduct= (id_product) => {
+
+    const sql = `
+    DELETE FROM 
+        products
+    WHERE 
+        id = $1
+    `;
+
+    return db.none(sql, [
+        id_product
+    ]);
+
+}
 
 module.exports = Product;

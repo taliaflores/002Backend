@@ -73,15 +73,16 @@ products(app, upload);
 * LLAMAR A LOS SOCKETS
 */
 ordersDeliverySocket(io);
-///-----Ip donde dara servicio del backend
-
-// server.listen(3000, '192.168.0.12' || 'localhost', function() {
-//     console.log('Aplicacion de NodeJS IP: '+ips+' EL puerto' + port + ' Iniciada...')
-// });
-
-server.listen(port, function() {
-    console.log('APP BACKEND MOSHIAPP PUERTO' + port + ' Iniciada...!')
+///-----Ip donde dara servicio del backendS
+IP='192.168.1.2'
+//IP='192.168.23.86'
+server.listen(3000, IP|| 'localhost', function() {
+    console.log('Aplicacion de NodeJS IP: '+IP+' EL puerto ' + port + ' Iniciada...')
 });
+
+// server.listen(port, function() {
+//     console.log('APP BACKEND MOSHIAPP PUERTO' + port + ' Iniciada...!')
+// });
 
 
 // ERROR HANDLER
@@ -98,3 +99,29 @@ module.exports = {
 // 200 - ES UN RESPUESTA EXITOSA
 // 404 - SIGNIFICA QUE LA URL NO EXISTE
 // 500 - ERROR INTERNO DEL SERVIDOR
+
+//CODIGO CLIENTADRESLIST 
+
+//val order = Order(
+//                products = selectedProducts,
+//                idClient = user?.id!!,
+//                idAddress = idAddress
+//            )
+    
+//            ordersProvider?.create(order)?.enqueue(object: Callback<ResponseHttp> {
+//                override fun onResponse(call: Call<ResponseHttp>, response: Response<ResponseHttp>) {
+    
+//                    if (response.body() != null) {
+//                        Toast.makeText(this@ClientAddressListActivity, "${response.body()?.message}", Toast.LENGTH_LONG).show()
+//                    }
+//                    else {
+//                        Toast.makeText(this@ClientAddressListActivity, "Ocurrio un error en la peticion", Toast.LENGTH_LONG).show()
+//                    }
+    
+//                }
+    
+//                override fun onFailure(call: Call<ResponseHttp>, t: Throwable) {
+//                    Toast.makeText(this@ClientAddressListActivity, "Error: ${t.message}", Toast.LENGTH_LONG).show()
+//                }
+    
+//            })

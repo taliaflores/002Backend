@@ -25,5 +25,25 @@ Rol.create = (id_user, id_rol) => {
 
 }
 
+
+
+Rol.asignarDelivery = (id_user) => {
+
+    const sql = `
+    UPDATE
+        user_has_roles
+    SET
+        id_rol = 3,
+        updated_at = $2
+    WHERE 
+        id_user = $1
+    `;
+
+    return db.none(sql, [
+        id_user,
+         new Date()
+    ]);
+
+}
 module.exports = Rol;
 

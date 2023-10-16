@@ -33,14 +33,43 @@ module.exports = {
             console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
-                message: 'Error al obtener los usuarios'
+                message: 'Error al obtener los usuarios Repartidoress'
+            });
+        }
+    },
+    async findClientes(req, res, next) {
+        try {
+            const data = await User.findClients();    
+            
+            return res.status(201).json(data);
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Error al obtener los usuarios Clientes'
+            });
+        }
+    },
+    async findAdministrador(req, res, next) {
+        try {
+            const data = await User.findAdmins();    
+            
+            return res.status(201).json(data);
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Error al obtener los usuarios Admin'
             });
         }
     },
 
     async register(req, res, next) {
         try {
-            
+            console.log(req.body);
+
             const user = req.body;
             const data = await User.create(user);
 
@@ -85,6 +114,7 @@ module.exports = {
             const password = req.body.password;
 
             const myUser = await User.findByEmail(email);
+            console.log('7777777777777777777777  myUser', myUser);
 
             if (!myUser) {
                 return res.status(401).json({
@@ -148,7 +178,7 @@ module.exports = {
             console.log('Usuario', req.body.user);
 
             const user = JSON.parse(req.body.user); // CLIENTE DEBE ENVIARNOS UN OBJETO USER 
-            console.log('Usuario Parseado', user);
+            // console.log('Usuario Parseado', user);
 
             const files = req.files;
 
@@ -185,10 +215,10 @@ module.exports = {
 
 
     async updateWithoutImage(req, res, next) {
+        console.log('++++++++++++++++++++updateUser', req.body);
 
         try {
             
-            console.log('Usuario', req.body);
 
             const user = req.body; // CLIENTE DEBE ENVIARNOS UN OBJETO USER 
             console.log('Usuario Parseado', user);
@@ -213,6 +243,34 @@ module.exports = {
         }
 
     },
+
+
+    async asignarDlivery(req, res, next) {
+        console.log('++++++++++++++++++++asignarDlivery', req.body);
+
+        try {
+            
+            const user = req.body;       
+            await Rol.asignarDelivery(user.id); // GUARDANDO LA URL EN LA BASE DE DATOS
+
+            return res.status(201).json({
+                success: true,
+                message: 'Se tiene un nuevo delivery',
+                data: user
+            });
+
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error al crear el delivery',
+                error: error
+            });
+        }
+
+    },
+
     async updateNotificationToken(req, res, next) {
 
         try {
