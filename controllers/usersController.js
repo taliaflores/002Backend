@@ -73,7 +73,7 @@ module.exports = {
             const user = req.body;
             const data = await User.create(user);
 
-            await Rol.create(data.id, 1);
+            await Rol.create(data.id, 2);
 
             const token = jwt.sign({ id: data.id, email: user.email }, keys.secretOrKey, {
                 // expiresIn: 
