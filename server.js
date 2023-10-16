@@ -74,11 +74,19 @@ products(app, upload);
 */
 ordersDeliverySocket(io);
 ///-----Ip donde dara servicio del backendS
-IP='192.168.1.2'
-//IP='192.168.23.86'
+
+/*IP='192.168.1.2'
+
 server.listen(3000, IP|| 'localhost', function() {
     console.log('Aplicacion de NodeJS IP: '+IP+' EL puerto ' + port + ' Iniciada...')
-});
+});*/
+
+app.listen(port, () => {
+    console.log("################################");
+    console.log("######## ailatdev REST 00 ######");
+    console.log("###################3############");
+    console.log(`Servidor escuchando en http://localhost:${port}`);
+  });
 
 // server.listen(port, function() {
 //     console.log('APP BACKEND MOSHIAPP PUERTO' + port + ' Iniciada...!')
